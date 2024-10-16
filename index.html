@@ -23,59 +23,62 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         .container {
-  max-width: 1200px;
-}
+            max-width: 1200px;
+        }
 
-.text-center h2 {
-  color: #1f2d3d;
-  font-size: 2.5rem;
-}
+        .text-center h2 {
+            color: #1f2d3d;
+            font-size: 2.5rem;
+        }
 
-.lead {
-  font-size: 1.25rem;
-  color: #6c757d;
-}
+        .lead {
+            font-size: 1.25rem;
+            color: #6c757d;
+        }
 
-.card-title {
-  color: #1f2d3d;
-}
+        .card-title {
+            color: #1f2d3d;
+        }
 
-.card-text {
-  color: #6c757d;
-}
+        .card-text {
+            color: #6c757d;
+        }
 
-.card {
-  border: none;
-  border-radius: 10px;
-}
+        .card {
+            border: none;
+            border-radius: 10px;
+        }
 
-.card i {
-  color: #28a745;
-}
+        .card i {
+            color: #28a745;
+        }
 
-.card.bg-primary {
-  border-radius: 15px;
-  background-color: #007bff; /* Customize this as needed */
-}
+        .card.bg-primary {
+            border-radius: 15px;
+            background-color: #007bff;
+            /* Customize this as needed */
+        }
 
-.card-title {
-  font-size: 1.5rem;
-}
+        .card-title {
+            font-size: 1.5rem;
+        }
 
-.card .btn {
-  border-radius: 30px;
-}
+        .card .btn {
+            border-radius: 30px;
+        }
 
-.btn-light {
-  color: #007bff; /* Customize the text color */
-}
+        .btn-light {
+            color: #007bff;
+            /* Customize the text color */
+        }
 
-@media (max-width: 768px) {
-  .text-md-right {
-    text-align: center !important;
-  }
-}
-.tooltip-icon {
+        @media (max-width: 768px) {
+            .text-md-right {
+                text-align: center !important;
+            }
+        }
+
+        .tooltip-icon {
             color: #007bff;
             margin-left: 10px;
             cursor: pointer;
@@ -90,13 +93,58 @@
             background-color: #000;
             border-radius: 5px;
         }
-
-
     </style>
 
 </head>
 
 <body id="page-top">
+
+    <!-- Add this form inside a centered card with the Mindstride logo -->
+    <div class="d-flex justify-content-center align-items-center min-vh-100" id="user-form" style="display:none;">
+        <div class="card p-4 shadow-lg" style="width: 400px;">
+            <!-- Mindstride logo at the top -->
+            <div class="text-center mb-4">
+                <img src="https://cdn.prod.website-files.com/6470df97937a5e96de2a652d/6642271cd7074f74c479456a_MindSpring_color_horz.svg"
+                    alt="Mindstride Logo" style="width: 150px;">
+            </div>
+            <h3 class="text-center mb-4">Fill out the form to generate the report</h3>
+            <form id="companyForm">
+                <div class="mb-3">
+                    <label for="companyName">Company Name</label>
+                    <input class="form-control form-control-sm" maxlength="256" name="companyName" id="companyName"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="domain">Domain</label>
+                    <input class="form-control form-control-sm" maxlength="256" name="domain" id="domain" required>
+                </div>
+                <div class="mb-3">
+                    <label for="employees">Number of Employees</label>
+                    <input class="form-control form-control-sm" type="number" name="employees" id="employees" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Generate Report</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add this CSS for centering and form styling -->
+    <style>
+        /* Full height of the viewport */
+        .min-vh-100 {
+            min-height: 100vh;
+        }
+
+        /* Set the width of the card */
+        .card {
+            max-width: 100%;
+            margin: 20px;
+        }
+
+        /* Limit form width */
+        form {
+            width: 100%;
+        }
+    </style>
 
 
     <!-- Page Wrapper -->
@@ -122,7 +170,8 @@
                             <h1 class="h1 mb-0 text-gray-800" id="company-heading">Mental Health Report</h1>
                             <!-- Powered By Section -->
                             <div class="powered-by d-flex align-items-center mt-2">
-                                <span class="small mr-2">Powered By:</span><a href="https://mindstride.ai" target="_blank">
+                                <span class="small mr-2">Powered By:</span><a href="https://mindstride.ai"
+                                    target="_blank">
                                     <img src="https://cdn.prod.website-files.com/6470df97937a5e96de2a652d/6642271cd7074f74c479456a_MindSpring_color_horz.svg"
                                         alt="Mindstride Logo" style="width: 100px;"></a>
                             </div>
@@ -134,224 +183,6 @@
                             <i class="fas fa-download fa-sm text-white-50"></i> Download PDF
                         </a>
                     </div>
-                    <script>
-                        document.getElementById("download-pdf-btn").addEventListener("click", function () {
-                            const { jsPDF } = window.jspdf;
-
-                            // Capture the content of the entire content wrapper as an image
-                            html2canvas(document.getElementById('content-wrapper'), {
-                                scale: 2, // Increase scale to capture higher quality
-                                useCORS: true // This allows cross-origin images to be included
-                            }).then(function (canvas) {
-                                const imgData = canvas.toDataURL('image/png');
-
-                                // Create a new jsPDF instance
-                                const pdf = new jsPDF('p', 'mm', 'a4');
-
-                                // Calculate the width and height for the image to fit in the PDF page
-                                const pdfWidth = pdf.internal.pageSize.getWidth();
-                                const pdfHeight = pdf.internal.pageSize.getHeight();
-
-                                // Set image size based on the PDF page size
-                                const imgWidth = canvas.width * 0.264583;  // px to mm (1px = 0.264583mm)
-                                const imgHeight = canvas.height * 0.264583; // px to mm
-
-                                // If the image is too tall to fit the page, scale it proportionally
-                                const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-
-                                const finalImgWidth = imgWidth * ratio;
-                                const finalImgHeight = imgHeight * ratio;
-
-                                // Add the image to the PDF
-                                pdf.addImage(imgData, 'PNG', 0, 0, finalImgWidth, finalImgHeight);
-
-                                // Save the generated PDF
-                                pdf.save('Mental_Health_Report.pdf');
-                            });
-                        });
-                    </script>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            // Function to get URL parameters
-                            function getUrlParameter(name) {
-                                const urlParams = new URLSearchParams(window.location.search);
-                                return urlParams.get(name);
-                            }
-
-                            // Get company and domain parameters from URL
-                            var companyName = getUrlParameter('company');
-                            var domainName = getUrlParameter('domain');
-
-                            // Update H1 text if company name is present
-                            if (companyName) {
-                                document.getElementById('company-heading').innerText = companyName + ' Mental Health Report';
-                            }
-
-                            // Update image src if domain name is present
-                            if (domainName) {
-                                document.getElementById('company-logo').src = 'https://logo.clearbit.com/' + domainName;
-                            }
-                        });
-                    </script>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            // Function to get URL parameters
-                            function getUrlParameter(name) {
-                                const urlParams = new URLSearchParams(window.location.search);
-                                return urlParams.get(name);
-                            }
-
-                            // Function to calculate based on general Canadian mental health statistics
-                            function calculateMentalHealthStats(employees) {
-                                let totalMentalHealth = Math.floor(employees * 0.4); // 40% of employees with mental health conditions
-                                let anxiety = Math.floor(employees * 0.34); // 34% experience anxiety
-                                let depression = Math.floor(employees * 0.09); // 9% experience depression
-                                let insomnia = Math.floor(employees * 0.15); // 15% experience insomnia
-                                let adhd = Math.floor(employees * 0.06); // 6% experience ADHD
-                                let burnout = Math.floor(employees * 0.40); // 40% experience burnout
-                                let bipolar = Math.floor(employees * 0.03); // 3% experience bipolar disorder
-
-                                // Update the page with calculated values
-                                document.querySelector("[data-value='40']").setAttribute("data-value", totalMentalHealth);
-                                document.querySelector("[data-value='34']").setAttribute("data-value", anxiety);
-                                document.querySelector("[data-value='9']").setAttribute("data-value", depression);
-                                document.querySelector("[data-value='15']").setAttribute("data-value", insomnia);
-                                document.querySelector("[data-value='6']").setAttribute("data-value", adhd);
-                                document.querySelector("[data-value='40']").setAttribute("data-value", burnout);
-                                document.querySelector("[data-value='3']").setAttribute("data-value", bipolar);
-
-                                // Animate the values as numbers increment up
-                                animateNumbers();
-                            }
-
-                            // Function to animate numbers on the page
-                            function animateNumbers() {
-                                let counters = document.querySelectorAll('[data-value]');
-                                counters.forEach(function (counter) {
-                                    let endValue = parseInt(counter.getAttribute('data-value'));
-                                    animateValue(counter, 0, endValue, 2000); // 2000ms = 2 seconds for full animation
-                                });
-                            }
-
-                            // Function to animate numbers changing
-                            function animateValue(element, start, end, duration) {
-                                let range = end - start;
-                                let min = 0;
-                                let max = range;
-                                let current = start;
-                                let increment = range / (duration / 50); // Change number every 50ms
-                                let randomize = Math.random; // For a random effect during jumble
-
-                                let timer = setInterval(function () {
-                                    if (current < end - 1) {
-                                        current = Math.floor(randomize() * (max - min + 1) + min);
-                                    } else {
-                                        current += increment;
-                                    }
-
-                                    if (current >= end) {
-                                        current = end;
-                                        clearInterval(timer);
-                                    }
-
-                                    element.textContent = Math.floor(current);
-                                }, 50); // Update every 50ms for a smoother animation
-                            }
-
-                            // Function to calculate the results based on form input
-                            // Function to calculate the Mindstride cost ($25 per employee per month)
-                            function calculateMindstrideCost(totalEmps) {
-                                return totalEmps * 25 * 12; // Annual cost
-                            }
-
-                            // Function to calculate the results based on form input
-                            function calculateResults() {
-                                var totalEmps = parseFloat(document.getElementById('totalEmployees').value);
-                                var LOAinDays = parseFloat(document.getElementById('loaInDays').value);
-                                var AvgAnnSalary = parseFloat(document.getElementById('avgAnnualSalary').value);
-                                var LengthOfAbs = parseFloat(document.getElementById('lengthOfAbs').value);
-                                var EmpsOnLOA = parseFloat(document.getElementById('empsOnLOA').value);
-                                var AvgTurnRate = parseFloat(document.getElementById('avgTurnRate').value);
-
-                                if (!isNaN(totalEmps) && !isNaN(LOAinDays) && !isNaN(AvgAnnSalary) && !isNaN(LengthOfAbs) && !isNaN(EmpsOnLOA) && !isNaN(AvgTurnRate)) {
-                                    // Calculate cost savings
-                                    let numEmpsOnLOA = EmpsOnLOA / 100 * totalEmps;
-                                    let CstPrEmpPrDayOnLOA = AvgAnnSalary / 260;
-                                    let AvgHrlySlry = AvgAnnSalary / 52 / 40;
-                                    let WellnessAdoptionRate = 0.3;
-                                    let finalSvdCost = 0;
-
-                                    finalSvdCost += LOAinDays * numEmpsOnLOA * CstPrEmpPrDayOnLOA
-                                        - 30 * numEmpsOnLOA * CstPrEmpPrDayOnLOA
-                                        + 8 * LengthOfAbs * AvgHrlySlry * 0.27 * totalEmps * 0.5 * 0.8 * WellnessAdoptionRate
-                                        + AvgTurnRate / 100 * 0.55 * 0.35 * AvgHrlySlry * 2087 * 0.03 * WellnessAdoptionRate * totalEmps
-                                        + AvgHrlySlry * (totalEmps * 15 / 100 * 50)
-                                        + CstPrEmpPrDayOnLOA / 8 * (4 * (0.65 * (1.5 * totalEmps)));
-
-                                    // Display the cost savings result (Result 1)
-                                    document.getElementById('result').innerHTML = "$" + Math.trunc(finalSvdCost).toLocaleString();
-
-                                    // Calculate the Mindstride cost (Result 2)
-                                    let mindstrideCost = calculateMindstrideCost(totalEmps);
-                                    document.getElementById('result2').innerHTML = "- $" + Math.trunc(mindstrideCost).toLocaleString();
-
-                                    // Calculate the net savings (Result 3)
-                                    let netSavings = finalSvdCost - mindstrideCost;
-                                    document.getElementById('result3').innerHTML = "$" + Math.trunc(netSavings).toLocaleString();
-                                } else {
-                                    document.getElementById('result').innerHTML = 'Please fill out all fields.';
-                                    document.getElementById('result2').innerHTML = '- $0';
-                                    document.getElementById('result3').innerHTML = '$0';
-                                }
-                            }
-
-                            // Function to calculate on page load using placeholder values
-                            function calculateOnLoad(employees) {
-                                document.getElementById('totalEmployees').value = employees;
-                                document.getElementById('loaInDays').value = document.getElementById('loaInDays').placeholder;
-                                document.getElementById('avgAnnualSalary').value = document.getElementById('avgAnnualSalary').placeholder;
-                                document.getElementById('lengthOfAbs').value = document.getElementById('lengthOfAbs').placeholder;
-                                document.getElementById('empsOnLOA').value = document.getElementById('empsOnLOA').placeholder;
-                                document.getElementById('avgTurnRate').value = document.getElementById('avgTurnRate').placeholder;
-
-                                calculateResults(); // Run calculation on page load
-                            }
-
-                            // Get the number of employees from the URL parameter
-                            let employees = parseInt(getUrlParameter('employees')) || 100; // Default to 100 employees if not provided
-
-                            // Calculate mental health stats and update the ROI calculator
-                            calculateMentalHealthStats(employees);
-                            calculateOnLoad(employees);  // Update ROI calculator with employee parameter
-
-                            // Event listener for the Recalculate button
-                            document.getElementById('recalculateButton').addEventListener('click', function () {
-                                calculateResults();
-                            });
-                        });
-
-                        document.addEventListener("DOMContentLoaded", function () {
-                            // Function to get URL parameters
-                            function getUrlParameter(name) {
-                                const urlParams = new URLSearchParams(window.location.search);
-                                return urlParams.get(name);
-                            }
-
-                            // Get the company name parameter from the URL
-                            var companyName = getUrlParameter('company');
-
-                            // Default company name if not provided
-                            if (!companyName) {
-                                companyName = 'Your Company';
-                            }
-
-                            // Update the heading with the company name
-                            var headingElement = document.getElementById('company-mental-health-heading');
-                            headingElement.innerText = 'People at ' + companyName + ' Suffering From Treatable Mental Health Conditions';
-                        });
-
-                    </script>
-
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Left large card spanning two rows -->
@@ -639,75 +470,83 @@
                     <div class="container mt-5">
                         <!-- Full Width Heading -->
                         <div class="text-center mb-4">
-                          <h2 class="display-4 font-weight-bold">Finally an EAP that is Perfect for your Company</h2>
-                          <p class="lead">
-                            Mindstride's innovative Employee Assistance Program (EAP) proactively provides employee access to mental health care when they need it the most.
-                          </p>
+                            <h2 class="display-4 font-weight-bold">Finally an EAP that is Perfect for your Company</h2>
+                            <p class="lead">
+                                Mindstride's innovative Employee Assistance Program (EAP) proactively provides employee
+                                access to mental health care when they need it the most.
+                            </p>
                         </div>
-                      
+
                         <!-- Two Column Layout -->
                         <div class="row align-items-center">
-                          <!-- Left Column: Image -->
-                          <div class="col-md-6 text-center">
-                            <img src="https://cdn.prod.website-files.com/6470df97937a5e96de2a652d/66aa26a668c4c804decc7200_person-eap-removebg-preview.png" alt="Person EAP" class="img-fluid">
-                          </div>
-                      
-                          <!-- Right Column: Cards with Checkmarks -->
-                          <div class="col-md-6">
-                            <!-- Card 1: Better Access to Care -->
-                            <div class="card shadow mb-3">
-                              <div class="card-body d-flex align-items-center">
-                                <i class="fas fa-check-circle text-success fa-2x mr-3"></i>
-                                <div>
-                                  <h5 class="card-title font-weight-bold">Better Access to Care</h5>
-                                  <p class="card-text">Access to dedicated Ottawa in-person and virtual mental health care ensures timely support.</p>
-                                </div>
-                              </div>
+                            <!-- Left Column: Image -->
+                            <div class="col-md-6 text-center">
+                                <img src="https://cdn.prod.website-files.com/6470df97937a5e96de2a652d/66aa26a668c4c804decc7200_person-eap-removebg-preview.png"
+                                    alt="Person EAP" class="img-fluid">
                             </div>
-                      
-                            <!-- Card 2: Better Patient Outcomes -->
-                            <div class="card shadow mb-3">
-                              <div class="card-body d-flex align-items-center">
-                                <i class="fas fa-check-circle text-success fa-2x mr-3"></i>
-                                <div>
-                                  <h5 class="card-title font-weight-bold">Better Patient Outcomes</h5>
-                                  <p class="card-text">Cutting-edge, science-informed mental health programs deliver personalized and effective care.</p>
+
+                            <!-- Right Column: Cards with Checkmarks -->
+                            <div class="col-md-6">
+                                <!-- Card 1: Better Access to Care -->
+                                <div class="card shadow mb-3">
+                                    <div class="card-body d-flex align-items-center">
+                                        <i class="fas fa-check-circle text-success fa-2x mr-3"></i>
+                                        <div>
+                                            <h5 class="card-title font-weight-bold">Better Access to Care</h5>
+                                            <p class="card-text">Access to dedicated Ottawa in-person and virtual mental
+                                                health care ensures timely support.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                            </div>
-                      
-                            <!-- Card 3: Better Business Outcomes -->
-                            <div class="card shadow">
-                              <div class="card-body d-flex align-items-center">
-                                <i class="fas fa-check-circle text-success fa-2x mr-3"></i>
-                                <div>
-                                  <h5 class="card-title font-weight-bold">Better Business Outcomes</h5>
-                                  <p class="card-text">Employees need and deserve greater support. It’s a key priority for their employers.</p>
+
+                                <!-- Card 2: Better Patient Outcomes -->
+                                <div class="card shadow mb-3">
+                                    <div class="card-body d-flex align-items-center">
+                                        <i class="fas fa-check-circle text-success fa-2x mr-3"></i>
+                                        <div>
+                                            <h5 class="card-title font-weight-bold">Better Patient Outcomes</h5>
+                                            <p class="card-text">Cutting-edge, science-informed mental health programs
+                                                deliver personalized and effective care.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
+
+                                <!-- Card 3: Better Business Outcomes -->
+                                <div class="card shadow">
+                                    <div class="card-body d-flex align-items-center">
+                                        <i class="fas fa-check-circle text-success fa-2x mr-3"></i>
+                                        <div>
+                                            <h5 class="card-title font-weight-bold">Better Business Outcomes</h5>
+                                            <p class="card-text">Employees need and deserve greater support. It’s a key
+                                                priority for their employers.</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
-                      <!-- Full Width CTA Card -->
-<!-- Full Width CTA Card -->
-<div class="container-fluid mt-5">
-    <div class="card bg-primary text-white p-4 shadow-lg">
-      <div class="row align-items-center">
-        <!-- Left side: Text content -->
-        <div class="col-md-8">
-          <h2 class="card-title font-weight-bold mb-0 text-white">Start helping your employees in as little as 48 hours</h2>
-        </div>
-        <!-- Right side: Button -->
-        <div class="col-md-4 text-md-right text-center">
-          <a href="https://calendly.com/patrick-horne/mindstride_intro" class="btn btn-lg btn-light font-weight-bold px-5" target="_blank">Book A Demo</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-                      
+                    </div>
+                    <!-- Full Width CTA Card -->
+                    <!-- Full Width CTA Card -->
+                    <div class="container-fluid mt-5">
+                        <div class="card bg-primary text-white p-4 shadow-lg">
+                            <div class="row align-items-center">
+                                <!-- Left side: Text content -->
+                                <div class="col-md-8">
+                                    <h2 class="card-title font-weight-bold mb-0 text-white">Start helping your employees
+                                        in as little as 48 hours</h2>
+                                </div>
+                                <!-- Right side: Button -->
+                                <div class="col-md-4 text-md-right text-center">
+                                    <a href="https://calendly.com/patrick-horne/mindstride_intro"
+                                        class="btn btn-lg btn-light font-weight-bold px-5" target="_blank">Book A
+                                        Demo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -751,6 +590,231 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Function to get URL parameters
+            function getUrlParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+    
+            // Function to calculate based on general Canadian mental health statistics
+            function calculateMentalHealthStats(employees) {
+                let totalMentalHealth = Math.floor(employees * 0.4); // 40% of employees with mental health conditions
+                let anxiety = Math.floor(employees * 0.34); // 34% experience anxiety
+                let depression = Math.floor(employees * 0.09); // 9% experience depression
+                let insomnia = Math.floor(employees * 0.15); // 15% experience insomnia
+                let adhd = Math.floor(employees * 0.06); // 6% experience ADHD
+                let burnout = Math.floor(employees * 0.40); // 40% experience burnout
+                let bipolar = Math.floor(employees * 0.03); // 3% experience bipolar disorder
+    
+                // Update the page with calculated values
+                document.querySelector("[data-value='40']").setAttribute("data-value", totalMentalHealth);
+                document.querySelector("[data-value='34']").setAttribute("data-value", anxiety);
+                document.querySelector("[data-value='9']").setAttribute("data-value", depression);
+                document.querySelector("[data-value='15']").setAttribute("data-value", insomnia);
+                document.querySelector("[data-value='6']").setAttribute("data-value", adhd);
+                document.querySelector("[data-value='40']").setAttribute("data-value", burnout);
+                document.querySelector("[data-value='3']").setAttribute("data-value", bipolar);
+    
+                // Animate the values as numbers increment up
+                animateNumbers();
+            }
+    
+            // Function to animate numbers on the page
+            function animateNumbers() {
+                let counters = document.querySelectorAll('[data-value]');
+                counters.forEach(function (counter) {
+                    let endValue = parseInt(counter.getAttribute('data-value'));
+                    animateValue(counter, 0, endValue, 2000); // 2000ms = 2 seconds for full animation
+                });
+            }
+    
+            // Function to animate numbers changing
+            function animateValue(element, start, end, duration) {
+                let range = end - start;
+                let min = 0;
+                let max = range;
+                let current = start;
+                let increment = range / (duration / 50); // Change number every 50ms
+                let randomize = Math.random; // For a random effect during jumble
+    
+                let timer = setInterval(function () {
+                    if (current < end - 1) {
+                        current = Math.floor(randomize() * (max - min + 1) + min);
+                    } else {
+                        current += increment;
+                    }
+    
+                    if (current >= end) {
+                        current = end;
+                        clearInterval(timer);
+                    }
+    
+                    element.textContent = Math.floor(current);
+                }, 50); // Update every 50ms for a smoother animation
+            }
+    
+            // Function to calculate the results based on form input
+            function calculateResults() {
+                let totalEmps = parseFloat(document.getElementById('totalEmployees').value);
+                let LOAinDays = parseFloat(document.getElementById('loaInDays').value);
+                let AvgAnnSalary = parseFloat(document.getElementById('avgAnnualSalary').value);
+                let LengthOfAbs = parseFloat(document.getElementById('lengthOfAbs').value);
+                let EmpsOnLOA = parseFloat(document.getElementById('empsOnLOA').value);
+                let AvgTurnRate = parseFloat(document.getElementById('avgTurnRate').value);
+    
+                if (!isNaN(totalEmps) && !isNaN(LOAinDays) && !isNaN(AvgAnnSalary) && !isNaN(LengthOfAbs) && !isNaN(EmpsOnLOA) && !isNaN(AvgTurnRate)) {
+                    let numEmpsOnLOA = EmpsOnLOA / 100 * totalEmps;
+                    let CstPrEmpPrDayOnLOA = AvgAnnSalary / 260;
+                    let AvgHrlySlry = AvgAnnSalary / 52 / 40;
+                    let WellnessAdoptionRate = 0.3;
+    
+                    let finalSvdCost = LOAinDays * numEmpsOnLOA * CstPrEmpPrDayOnLOA
+                        - 30 * numEmpsOnLOA * CstPrEmpPrDayOnLOA
+                        + 8 * LengthOfAbs * AvgHrlySlry * 0.27 * totalEmps * 0.5 * 0.8 * WellnessAdoptionRate
+                        + AvgTurnRate / 100 * 0.55 * 0.35 * AvgHrlySlry * 2087 * 0.03 * WellnessAdoptionRate * totalEmps;
+    
+                    document.getElementById('result').innerHTML = "$" + Math.trunc(finalSvdCost).toLocaleString();
+    
+                    let mindstrideCost = calculateMindstrideCost(totalEmps);
+                    document.getElementById('result2').innerHTML = "- $" + Math.trunc(mindstrideCost).toLocaleString();
+    
+                    let netSavings = finalSvdCost - mindstrideCost;
+                    document.getElementById('result3').innerHTML = "$" + Math.trunc(netSavings).toLocaleString();
+                } else {
+                    document.getElementById('result').innerHTML = 'Please fill out all fields.';
+                    document.getElementById('result2').innerHTML = '- $0';
+                    document.getElementById('result3').innerHTML = '$0';
+                }
+            }
+    
+            // Function to calculate the Mindstride cost ($25 per employee per month)
+            function calculateMindstrideCost(totalEmps) {
+                return totalEmps * 25 * 12; // Annual cost
+            }
+    
+            // Add this function to trigger on page load with pre-populated values
+            function prePopulateCalculator() {
+                // Get the number of employees from the URL
+                let employeesFromUrl = getUrlParameter('employees');
+    
+                // Check if employeesFromUrl exists, if so, set it as the value in the totalEmployees field
+                if (employeesFromUrl) {
+                    document.getElementById('totalEmployees').value = employeesFromUrl;
+                }
+    
+                // Set default values for the form fields, if needed
+                document.getElementById('loaInDays').value = 65;
+                document.getElementById('avgAnnualSalary').value = 100000;
+                document.getElementById('lengthOfAbs').value = 10.5;
+                document.getElementById('empsOnLOA').value = 2.5;
+                document.getElementById('avgTurnRate').value = 15;
+    
+                // Call the calculateResults function to run the calculation on page load
+                calculateResults();
+            }
+    
+            // Call the function on DOMContentLoaded to calculate immediately with pre-populated data
+            prePopulateCalculator();
+    
+            // Handle form submission
+        document.getElementById('companyForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Capture form input values
+            const companyName = document.getElementById('companyName').value;
+            const domain = document.getElementById('domain').value;
+            const employees = document.getElementById('employees').value;
+
+            // Update the URL with parameters
+            const url = new URL(window.location);
+            url.searchParams.set('company', companyName);
+            url.searchParams.set('domain', domain);
+            url.searchParams.set('employees', employees);
+            window.history.pushState({}, '', url);
+
+            // Pre-populate calculator with the form values
+            document.getElementById('totalEmployees').value = employees;
+            calculateResults();
+
+            // Hide the form and show the report with the new values
+            handleReportGeneration(companyName, domain, employees);
+
+            // Scroll down to the #content-wrapper anchor
+            document.getElementById('content-wrapper').scrollIntoView({ behavior: 'smooth' });
+        });
+    
+            // Event listener for the ROI calculator recalculate button
+            document.getElementById("recalculateButton").addEventListener('click', function () {
+                calculateResults();  // Trigger the results calculation when the recalculate button is clicked
+            });
+    
+            // Function to handle URL parameters or form input to show the report
+            function handleReportGeneration(companyName, domain, employees) {
+                if (companyName && domain && employees) {
+                    document.getElementById('user-form').style.display = 'none'; // Hide form
+                    document.getElementById('content').style.display = 'block';  // Show report
+    
+                    // Update the company logo and heading
+                    document.getElementById('company-heading').innerText = companyName + ' Mental Health Report';
+                    document.getElementById('company-logo').src = 'https://logo.clearbit.com/' + domain;
+    
+                    // Calculate mental health stats
+                    calculateMentalHealthStats(parseInt(employees));
+                } else {
+                    // Show form if URL parameters are not provided
+                    document.getElementById('user-form').style.display = 'block';
+                    document.getElementById('content').style.display = 'none';
+                }
+            }
+    
+            // Get URL parameters on page load
+            let companyName = getUrlParameter('company');
+            let domain = getUrlParameter('domain');
+            let employees = getUrlParameter('employees');
+    
+            // Handle report generation based on URL parameters
+            handleReportGeneration(companyName, domain, employees);
+    
+            // Download PDF functionality
+            document.getElementById("download-pdf-btn").addEventListener("click", function () {
+                const { jsPDF } = window.jspdf;
+    
+                // Capture the content of the entire content wrapper as an image
+                html2canvas(document.getElementById('content-wrapper'), {
+                    scale: 2, // Increase scale to capture higher quality
+                    useCORS: true // This allows cross-origin images to be included
+                }).then(function (canvas) {
+                    const imgData = canvas.toDataURL('image/png');
+    
+                    // Create a new jsPDF instance
+                    const pdf = new jsPDF('p', 'mm', 'a4');
+    
+                    // Calculate the width and height for the image to fit in the PDF page
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+    
+                    // Set image size based on the PDF page size
+                    const imgWidth = canvas.width * 0.264583;  // px to mm (1px = 0.264583mm)
+                    const imgHeight = canvas.height * 0.264583; // px to mm
+    
+                    // If the image is too tall to fit the page, scale it proportionally
+                    const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+    
+                    const finalImgWidth = imgWidth * ratio;
+                    const finalImgHeight = imgHeight * ratio;
+    
+                    // Add the image to the PDF
+                    pdf.addImage(imgData, 'PNG', 0, 0, finalImgWidth, finalImgHeight);
+    
+                    // Save the generated PDF
+                    pdf.save('Mental_Health_Report.pdf');
+                });
+            });
+        });
+    </script>    
+
 
 </body>
 
