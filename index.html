@@ -77,22 +77,6 @@
                 text-align: center !important;
             }
         }
-
-        .tooltip-icon {
-            color: #007bff;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .tooltip-inner {
-            max-width: 200px;
-            padding: 8px;
-            color: #fff;
-            text-align: center;
-            background-color: #000;
-            border-radius: 5px;
-        }
     </style>
 
 </head>
@@ -107,16 +91,16 @@
                 <img src="https://cdn.prod.website-files.com/6470df97937a5e96de2a652d/6642271cd7074f74c479456a_MindSpring_color_horz.svg"
                     alt="Mindstride Logo" style="width: 150px;">
             </div>
-            <h3 class="text-center mb-4">Fill out the form to generate the report</h3>
             <form id="companyForm">
                 <div class="mb-3">
                     <label for="companyName">Company Name</label>
                     <input class="form-control form-control-sm" maxlength="256" name="companyName" id="companyName"
-                        required>
+                        placeholder="Minstride" required>
                 </div>
                 <div class="mb-3">
                     <label for="domain">Domain</label>
-                    <input class="form-control form-control-sm" maxlength="256" name="domain" id="domain" required>
+                    <input class="form-control form-control-sm" maxlength="256" name="domain" id="domain"
+                        placeholder="mindstride.ai" required>
                 </div>
                 <div class="mb-3">
                     <label for="employees">Number of Employees</label>
@@ -144,6 +128,72 @@
         form {
             width: 100%;
         }
+
+        /* Ensure that the heading and content share the same width and alignment */
+        .container {
+            max-width: 1200px;
+            /* Set your max width */
+        }
+
+        #page-heading-wrapper {
+            width: 100%;
+            /* Ensure it takes the full width of the container */
+            margin-bottom: 20px;
+            /* Add some margin for spacing */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Distribute the content evenly */
+        }
+
+        #company-logo {
+            width: 8%;
+            /* Adjust logo size if needed */
+        }
+
+        .text-center.w-100 {
+            flex-grow: 1;
+            /* Let the center section grow to take the available space */
+        }
+
+        #company-heading {
+            font-size: 2rem;
+            /* Customize the heading font size */
+            color: #1f2d3d;
+            /* Customize color */
+        }
+
+        .powered-by {
+            margin-top: 10px;
+            /* Adjust margin as needed */
+        }
+
+        .tooltip-icon {
+            font-size: 0.9rem;
+            /* Adjust size */
+            color: #d5d5d5 !important;
+            /* Light grey color */
+            cursor: pointer;
+        }
+
+        .tooltip-icon-link {
+            bottom: 10px;
+            /* Align tooltip icon to the bottom */
+            right: 10px;
+            /* Align tooltip icon to the right */
+        }
+
+        .tooltip .tooltip-inner {
+            max-width: 200px;
+            /* Adjust tooltip width */
+            text-align: left;
+        }
+
+        .tooltip .tooltip-inner a {
+            color: #007bff;
+            /* Bootstrap default link color */
+            text-decoration: underline;
+        }
     </style>
 
 
@@ -160,7 +210,7 @@
                 <div class="container mt-5">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4" id="page-heading-wrapper">
                         <!-- Company Logo -->
                         <img src="https://cdn.prod.website-files.com/6470df97937a5e96de2a652d/6642271cd7074f74c479456a_MindSpring_color_horz.svg"
                             id="company-logo" style="width: 8%">
@@ -189,6 +239,14 @@
                         <div class="col-xl-6 col-lg-6 mb-4">
                             <div class="card shadow h-100 py-2">
                                 <div class="card-body">
+                                    <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.mhrc.ca/key-facts-on-mental-health" target="_blank"
+                                        class="tooltip-icon-link position-absolute">
+                                        <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                            data-html="true" data-placement="top"
+                                            title="Source: Mental Health Research Canada">
+                                        </i>
+                                    </a>
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"
                                         id="company-mental-health-heading">
                                         <!-- Text will be updated dynamically -->
@@ -206,6 +264,14 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card border-left-primary shadow h-100 py-2">
                                         <div class="card-body">
+                                            <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.mhrc.ca/key-facts-on-mental-health" target="_blank"
+                                    class="tooltip-icon-link position-absolute">
+                                    <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                        data-html="true" data-placement="top"
+                                        title="Source: Mental Health Research Canada">
+                                    </i>
+                                </a>
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Anxiety
                                             </div>
@@ -217,6 +283,14 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card border-left-success shadow h-100 py-2">
                                         <div class="card-body">
+                                            <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.statcan.gc.ca/o1/en/plus/5461-lets-talk-mental-health" target="_blank"
+                                    class="tooltip-icon-link position-absolute">
+                                    <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                        data-html="true" data-placement="top"
+                                        title="Source: Statistics Canada">
+                                    </i>
+                                </a>
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Depression
                                             </div>
@@ -228,6 +302,14 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card border-left-info shadow h-100 py-2">
                                         <div class="card-body">
+                                            <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.statcan.gc.ca/o1/en/plus/1653-cant-sleep-count-sheep" target="_blank"
+                                    class="tooltip-icon-link position-absolute">
+                                    <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                        data-html="true" data-placement="top"
+                                        title="Source: Statistics Canada">
+                                    </i>
+                                </a>
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                 Insomnia
                                             </div>
@@ -240,6 +322,14 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card border-left-warning shadow h-100 py-2">
                                         <div class="card-body">
+                                            <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://caddac.ca/about-adhd/in-general/" target="_blank"
+                                    class="tooltip-icon-link position-absolute">
+                                    <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                        data-html="true" data-placement="top"
+                                        title="Source: Center for ADHD Awareness">
+                                    </i>
+                                </a>
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 ADHD
                                             </div>
@@ -251,6 +341,14 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card border-left-danger shadow h-100 py-2">
                                         <div class="card-body">
+                                            <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://press.roberthalf.ca/2023-05-31-Nearly-4-in-10-Professionals-Report-Rising-Burnout" target="_blank"
+                                    class="tooltip-icon-link position-absolute">
+                                    <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                        data-html="true" data-placement="top"
+                                        title="Source: Robert Half Survey">
+                                    </i>
+                                </a>
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Burnout
                                             </div>
@@ -262,6 +360,14 @@
                                 <div class="col-md-4 mb-4">
                                     <div class="card border-left-secondary shadow h-100 py-2">
                                         <div class="card-body">
+                                            <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.statcan.gc.ca/o1/en/plus/4691-mental-health-canadians-it-matters" target="_blank"
+                                    class="tooltip-icon-link position-absolute">
+                                    <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                        data-html="true" data-placement="top"
+                                        title="Source: Statistics Canada">
+                                    </i>
+                                </a>
                                             <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                                                 Bi-Polar
                                             </div>
@@ -283,21 +389,15 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.statcan.gc.ca/o1/en/plus/4691-mental-health-canadians-it-matters" target="_blank"
+                                        class="tooltip-icon-link position-absolute">
+                                        <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                            data-html="true" data-placement="top"
+                                            title="Source: Statistics Canada">
+                                        </i>
+                                    </a>
                                     <h6 class="m-0 font-weight-bold text-primary">Canada Mental Health Prevelance</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -314,21 +414,15 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://health-infobase.canada.ca/mental-health/inequalities/report.html" target="_blank"
+                                        class="tooltip-icon-link position-absolute">
+                                        <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                            data-html="true" data-placement="top"
+                                            title="Source: Government of Canada, Statistics Canada">
+                                        </i>
+                                    </a>
                                     <h6 class="m-0 font-weight-bold text-primary">Mental Health Drivers</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -356,10 +450,18 @@
                         <div class="col-md-4 mb-4">
                             <div class="card shadow h-100 py-2">
                                 <div class="card-body">
+                                    <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.mhrc.ca/key-facts-on-mental-health" target="_blank"
+                                        class="tooltip-icon-link position-absolute">
+                                        <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                            data-html="true" data-placement="top"
+                                            title="Source: Mental Health Research Canada">
+                                        </i>
+                                    </a>
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Canadians with Access to Care
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">50%</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">< 50%</div>
                                 </div>
                             </div>
                         </div>
@@ -368,10 +470,18 @@
                         <div class="col-md-4 mb-4">
                             <div class="card shadow h-100 py-2">
                                 <div class="card-body">
+                                    <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.fraserinstitute.org/sites/default/files/waiting-your-turn-2019-rev17dec.pdf" target="_blank"
+                                        class="tooltip-icon-link position-absolute">
+                                        <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                            data-html="true" data-placement="top"
+                                            title="Source: Fraiser Institute">
+                                        </i>
+                                    </a>
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Average Waiting Time To Get Help
+                                        Average Waiting Time To Get Qualified Help
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">6 Months</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">4 Months</div>
                                 </div>
                             </div>
                         </div>
@@ -380,6 +490,14 @@
                         <div class="col-md-4 mb-4">
                             <div class="card shadow h-100 py-2">
                                 <div class="card-body">
+                                    <!-- Tooltip Icon placed in the bottom right and clickable to open a new window -->
+                                    <a href="https://www.cihi.ca/en/changes-in-practice-patterns-of-family-physicians-in-canada" target="_blank"
+                                        class="tooltip-icon-link position-absolute">
+                                        <i class="fas fa-info-circle tooltip-icon" data-toggle="tooltip"
+                                            data-html="true" data-placement="top"
+                                            title="Source: Canadian Institute For Health Information">
+                                        </i>
+                                    </a>
                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                         Average Patients Per Doctor
                                     </div>
@@ -391,10 +509,15 @@
                     <div class="row">
                         <div class="col-lg-12 mb-4">
                             <div class="card shadow calculator-container">
-                                <!-- Logo -->
-                                <div class="card-header text-center">
-                                    <h2 class="h2 m-2">Mindstride ROI Calculator</h2>
-                                </div>
+                            <div class="card-header text-center">
+                                <!-- Replace 'Mindstride' with the logo -->
+                                <h3 class="h3 m-2">
+                                    <img src="https://cdn.prod.website-files.com/6470df97937a5e96de2a652d/6642271cd7074f74c479456a_MindSpring_color_horz.svg" 
+                                         alt="Mindstride Logo" style="width: 150px; vertical-align: middle;">
+                                    ROI Calculator
+                                </h3>
+                            </div>
+                            
 
                                 <!-- ROI Calculator Form -->
                                 <div class="card-body">
@@ -421,7 +544,7 @@
                                                     <label for="avgAnnualSalary">What is the average annual salary for
                                                         your employees?</label>
                                                     <input class="form-control form-control-sm" maxlength="256"
-                                                        name="avgAnnualSalary" placeholder="100000" type="number"
+                                                        name="avgAnnualSalary" placeholder="60000" type="number"
                                                         id="avgAnnualSalary" required>
                                                 </div>
                                                 <div class="mb-3">
@@ -449,18 +572,18 @@
                                         </div>
 
                                         <!-- Right Column (Result and Recalculate Button) -->
-                                        <div class="col-md-6 text-center">
-                                            <p class="estimated-savings">Estimated Annual Cost Savings</p>
-                                            <div id="result" class="final-amount h3" style="font-size: 60px;">$0</div>
-                                            <p class="estimated-savings">Annual Cost of Mindstride</p>
+                                        <div class="col-md-6 text-center pt-4 mb-3 mt-3" style="background-color: #1c75bc; border-radius: 10px;">
+                                            <p class="estimated-savings" style="color: white;">Estimated Annual Cost Savings</p>
+                                            <div id="result" class="final-amount h3" style="font-size: 60px; color: white;">$0</div>
+                                            <p class="estimated-savings" style="color: white;">Annual Cost of Mindstride</p>
 
-                                            <div id="result2" class="final-amount h3" style="font-size: 60px;">-$20,000
+                                            <div id="result2" class="final-amount h3" style="font-size: 60px; color: white;">-$20,000
                                             </div>
-                                            <hr style="width: 60%" />
+                                            <hr style="width: 60%; background-color: white;" />
                                             <div id="result3" class="final-amount h3"
-                                                style="font-size: 60px; font-weight: bold">$80,000</div>
+                                                style="font-size: 60px; font-weight: bold; color: white;">$80,000</div>
                                             <button type="button" class="btn btn-primary mt-3"
-                                                id="recalculateButton">Recalculate</button>
+                                                id="recalculateButton" style="background-color: white; color: #1c75bc">Recalculate</button>
                                         </div>
                                     </div>
                                 </div>
@@ -597,7 +720,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(name);
             }
-    
+
             // Function to calculate based on general Canadian mental health statistics
             function calculateMentalHealthStats(employees) {
                 let totalMentalHealth = Math.floor(employees * 0.4); // 40% of employees with mental health conditions
@@ -607,7 +730,7 @@
                 let adhd = Math.floor(employees * 0.06); // 6% experience ADHD
                 let burnout = Math.floor(employees * 0.40); // 40% experience burnout
                 let bipolar = Math.floor(employees * 0.03); // 3% experience bipolar disorder
-    
+
                 // Update the page with calculated values
                 document.querySelector("[data-value='40']").setAttribute("data-value", totalMentalHealth);
                 document.querySelector("[data-value='34']").setAttribute("data-value", anxiety);
@@ -616,11 +739,11 @@
                 document.querySelector("[data-value='6']").setAttribute("data-value", adhd);
                 document.querySelector("[data-value='40']").setAttribute("data-value", burnout);
                 document.querySelector("[data-value='3']").setAttribute("data-value", bipolar);
-    
+
                 // Animate the values as numbers increment up
                 animateNumbers();
             }
-    
+
             // Function to animate numbers on the page
             function animateNumbers() {
                 let counters = document.querySelectorAll('[data-value]');
@@ -629,7 +752,7 @@
                     animateValue(counter, 0, endValue, 2000); // 2000ms = 2 seconds for full animation
                 });
             }
-    
+
             // Function to animate numbers changing
             function animateValue(element, start, end, duration) {
                 let range = end - start;
@@ -638,128 +761,158 @@
                 let current = start;
                 let increment = range / (duration / 50); // Change number every 50ms
                 let randomize = Math.random; // For a random effect during jumble
-    
+
                 let timer = setInterval(function () {
                     if (current < end - 1) {
                         current = Math.floor(randomize() * (max - min + 1) + min);
                     } else {
                         current += increment;
                     }
-    
+
                     if (current >= end) {
                         current = end;
                         clearInterval(timer);
                     }
-    
+
                     element.textContent = Math.floor(current);
                 }, 50); // Update every 50ms for a smoother animation
             }
-    
+
             // Function to calculate the results based on form input
             function calculateResults() {
-                let totalEmps = parseFloat(document.getElementById('totalEmployees').value);
-                let LOAinDays = parseFloat(document.getElementById('loaInDays').value);
-                let AvgAnnSalary = parseFloat(document.getElementById('avgAnnualSalary').value);
-                let LengthOfAbs = parseFloat(document.getElementById('lengthOfAbs').value);
-                let EmpsOnLOA = parseFloat(document.getElementById('empsOnLOA').value);
-                let AvgTurnRate = parseFloat(document.getElementById('avgTurnRate').value);
-    
-                if (!isNaN(totalEmps) && !isNaN(LOAinDays) && !isNaN(AvgAnnSalary) && !isNaN(LengthOfAbs) && !isNaN(EmpsOnLOA) && !isNaN(AvgTurnRate)) {
-                    let numEmpsOnLOA = EmpsOnLOA / 100 * totalEmps;
-                    let CstPrEmpPrDayOnLOA = AvgAnnSalary / 260;
-                    let AvgHrlySlry = AvgAnnSalary / 52 / 40;
-                    let WellnessAdoptionRate = 0.3;
-    
-                    let finalSvdCost = LOAinDays * numEmpsOnLOA * CstPrEmpPrDayOnLOA
-                        - 30 * numEmpsOnLOA * CstPrEmpPrDayOnLOA
-                        + 8 * LengthOfAbs * AvgHrlySlry * 0.27 * totalEmps * 0.5 * 0.8 * WellnessAdoptionRate
-                        + AvgTurnRate / 100 * 0.55 * 0.35 * AvgHrlySlry * 2087 * 0.03 * WellnessAdoptionRate * totalEmps;
-    
-                    document.getElementById('result').innerHTML = "$" + Math.trunc(finalSvdCost).toLocaleString();
-    
-                    let mindstrideCost = calculateMindstrideCost(totalEmps);
-                    document.getElementById('result2').innerHTML = "- $" + Math.trunc(mindstrideCost).toLocaleString();
-    
-                    let netSavings = finalSvdCost - mindstrideCost;
-                    document.getElementById('result3').innerHTML = "$" + Math.trunc(netSavings).toLocaleString();
-                } else {
-                    document.getElementById('result').innerHTML = 'Please fill out all fields.';
-                    document.getElementById('result2').innerHTML = '- $0';
-                    document.getElementById('result3').innerHTML = '$0';
-                }
-            }
-    
+    var totalEmps = parseFloat(document.getElementById('totalEmployees').value);
+    var LOAinDays = parseFloat(document.getElementById('loaInDays').value);
+    var AvgAnnSalary = parseFloat(document.getElementById('avgAnnualSalary').value);
+    var LengthOfAbs = parseFloat(document.getElementById('lengthOfAbs').value);
+    var EmpsOnLOA = parseFloat(document.getElementById('empsOnLOA').value);
+    var AvgTurnRate = parseFloat(document.getElementById('avgTurnRate').value);
+
+    if (!isNaN(totalEmps) && !isNaN(LOAinDays) && !isNaN(AvgAnnSalary) && !isNaN(LengthOfAbs) && !isNaN(EmpsOnLOA) && !isNaN(AvgTurnRate)) {
+        let numEmpsOnLOA = EmpsOnLOA / 100 * totalEmps;
+        let CstPrEmpPrDayOnLOA = AvgAnnSalary / 260;
+        let AvgHrlySlry = AvgAnnSalary / 52 / 40;
+        let WellnessAdoptionRate = 0.3;
+        let finalSvdCost = 0;
+
+        // Apply the original calculation logic
+        finalSvdCost += LOAinDays * numEmpsOnLOA * CstPrEmpPrDayOnLOA
+            - 30 * numEmpsOnLOA * CstPrEmpPrDayOnLOA
+            + 8 * LengthOfAbs * AvgHrlySlry * 0.27 * totalEmps * 0.5 * 0.8 * WellnessAdoptionRate
+            + AvgTurnRate / 100 * 0.55 * 0.35 * AvgHrlySlry * 2087 * 0.03 * WellnessAdoptionRate * totalEmps
+            + AvgHrlySlry * (totalEmps * 15 / 100 * 50)
+            + CstPrEmpPrDayOnLOA / 8 * (4 * (0.65 * (1.5 * totalEmps)));
+
+        // Display the results
+        document.getElementById('result').innerHTML = "$" + Math.trunc(finalSvdCost).toLocaleString();
+
+        let mindstrideCost = calculateMindstrideCost(totalEmps);
+        document.getElementById('result2').innerHTML = "- $" + Math.trunc(mindstrideCost).toLocaleString();
+
+        let netSavings = finalSvdCost - mindstrideCost;
+        document.getElementById('result3').innerHTML = "$" + Math.trunc(netSavings).toLocaleString();
+    } else {
+        document.getElementById('result').innerHTML = 'Please fill out all fields.';
+        document.getElementById('result2').innerHTML = '- $0';
+        document.getElementById('result3').innerHTML = '$0';
+    }
+}
+
+
             // Function to calculate the Mindstride cost ($25 per employee per month)
             function calculateMindstrideCost(totalEmps) {
                 return totalEmps * 25 * 12; // Annual cost
             }
-    
+
             // Add this function to trigger on page load with pre-populated values
             function prePopulateCalculator() {
                 // Get the number of employees from the URL
                 let employeesFromUrl = getUrlParameter('employees');
-    
+
                 // Check if employeesFromUrl exists, if so, set it as the value in the totalEmployees field
                 if (employeesFromUrl) {
                     document.getElementById('totalEmployees').value = employeesFromUrl;
                 }
-    
+
                 // Set default values for the form fields, if needed
                 document.getElementById('loaInDays').value = 65;
-                document.getElementById('avgAnnualSalary').value = 100000;
+                document.getElementById('avgAnnualSalary').value = 60000;
                 document.getElementById('lengthOfAbs').value = 10.5;
                 document.getElementById('empsOnLOA').value = 2.5;
                 document.getElementById('avgTurnRate').value = 15;
-    
+
                 // Call the calculateResults function to run the calculation on page load
                 calculateResults();
             }
-    
+
             // Call the function on DOMContentLoaded to calculate immediately with pre-populated data
             prePopulateCalculator();
-    
+
             // Handle form submission
-        document.getElementById('companyForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+            document.getElementById('companyForm').addEventListener('submit', function (event) {
+                event.preventDefault();
 
-            // Capture form input values
-            const companyName = document.getElementById('companyName').value;
-            const domain = document.getElementById('domain').value;
-            const employees = document.getElementById('employees').value;
+                // Capture form input values
+                const companyName = document.getElementById('companyName').value;
+                const domain = document.getElementById('domain').value;
+                const employees = document.getElementById('employees').value;
 
-            // Update the URL with parameters
-            const url = new URL(window.location);
-            url.searchParams.set('company', companyName);
-            url.searchParams.set('domain', domain);
-            url.searchParams.set('employees', employees);
-            window.history.pushState({}, '', url);
+                // Update the URL with parameters
+                const url = new URL(window.location);
+                url.searchParams.set('company', companyName);
+                url.searchParams.set('domain', domain);
+                url.searchParams.set('employees', employees);
+                window.history.pushState({}, '', url);
 
-            // Pre-populate calculator with the form values
-            document.getElementById('totalEmployees').value = employees;
-            calculateResults();
+                // Pre-populate calculator with the form values
+                document.getElementById('totalEmployees').value = employees;
+                calculateResults();
 
-            // Hide the form and show the report with the new values
-            handleReportGeneration(companyName, domain, employees);
+                // Hide the form and show the report with the new values
+                handleReportGeneration(companyName, domain, employees);
 
-            // Scroll down to the #content-wrapper anchor
-            document.getElementById('content-wrapper').scrollIntoView({ behavior: 'smooth' });
-        });
-    
+                // Ensure the content is visible before scrolling
+                setTimeout(function () {
+                    // Scroll down to the #content-wrapper anchor
+                    document.getElementById('content-wrapper').scrollIntoView({ behavior: 'smooth' });
+                }, 100); // Delay to ensure visibility change is registered before scroll
+            });
+
+            $(document).ready(function () {
+                // Initialize Bootstrap tooltips with HTML content enabled
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
+
+
             // Event listener for the ROI calculator recalculate button
             document.getElementById("recalculateButton").addEventListener('click', function () {
                 calculateResults();  // Trigger the results calculation when the recalculate button is clicked
             });
-    
+
             // Function to handle URL parameters or form input to show the report
             function handleReportGeneration(companyName, domain, employees) {
                 if (companyName && domain && employees) {
                     document.getElementById('user-form').style.display = 'none'; // Hide form
                     document.getElementById('content').style.display = 'block';  // Show report
-    
+
                     // Update the company logo and heading
                     document.getElementById('company-heading').innerText = companyName + ' Mental Health Report';
-                    document.getElementById('company-logo').src = 'https://logo.clearbit.com/' + domain;
-    
+
+                    // Set the default Mindstride logo
+                    const mindstrideLogoUrl = 'https://cdn.prod.website-files.com/6470df97937a5e96de2a652d/6642271cd7074f74c479456a_MindSpring_color_horz.svg';
+                    const companyLogoUrl = `https://logo.clearbit.com/${domain}`;
+                    const companyLogoElement = document.getElementById('company-logo');
+
+                    // Update the company logo (fallback to Mindstride logo if not found)
+                    companyLogoElement.src = companyLogoUrl;
+                    companyLogoElement.onerror = function () {
+                        this.src = mindstrideLogoUrl;
+                    };
+
+                    // Update the dynamic heading for mental health stats
+                    document.getElementById('company-mental-health-heading').innerText =
+                        `People at ${companyName} Suffering From Treatable Mental Health Conditions`;
+
                     // Calculate mental health stats
                     calculateMentalHealthStats(parseInt(employees));
                 } else {
@@ -768,52 +921,54 @@
                     document.getElementById('content').style.display = 'none';
                 }
             }
-    
+
+
+
             // Get URL parameters on page load
             let companyName = getUrlParameter('company');
             let domain = getUrlParameter('domain');
             let employees = getUrlParameter('employees');
-    
+
             // Handle report generation based on URL parameters
             handleReportGeneration(companyName, domain, employees);
-    
+
             // Download PDF functionality
             document.getElementById("download-pdf-btn").addEventListener("click", function () {
                 const { jsPDF } = window.jspdf;
-    
+
                 // Capture the content of the entire content wrapper as an image
                 html2canvas(document.getElementById('content-wrapper'), {
                     scale: 2, // Increase scale to capture higher quality
                     useCORS: true // This allows cross-origin images to be included
                 }).then(function (canvas) {
                     const imgData = canvas.toDataURL('image/png');
-    
+
                     // Create a new jsPDF instance
                     const pdf = new jsPDF('p', 'mm', 'a4');
-    
+
                     // Calculate the width and height for the image to fit in the PDF page
                     const pdfWidth = pdf.internal.pageSize.getWidth();
                     const pdfHeight = pdf.internal.pageSize.getHeight();
-    
+
                     // Set image size based on the PDF page size
                     const imgWidth = canvas.width * 0.264583;  // px to mm (1px = 0.264583mm)
                     const imgHeight = canvas.height * 0.264583; // px to mm
-    
+
                     // If the image is too tall to fit the page, scale it proportionally
                     const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-    
+
                     const finalImgWidth = imgWidth * ratio;
                     const finalImgHeight = imgHeight * ratio;
-    
+
                     // Add the image to the PDF
                     pdf.addImage(imgData, 'PNG', 0, 0, finalImgWidth, finalImgHeight);
-    
+
                     // Save the generated PDF
                     pdf.save('Mental_Health_Report.pdf');
                 });
             });
         });
-    </script>    
+    </script>
 
 
 </body>
