@@ -5480,9 +5480,13 @@
                 // Add this function to trigger on page load with pre-populated values
                 function prePopulateCalculator() {
                     const companyData = getCompanyData(companyName);
-
+                    if(companyData) {
                     // Prepopulate the calculator
                     document.getElementById('totalEmployees').value = companyData.employees;
+                }
+                else {
+                    document.getElementById('totalEmployees').value = getUrlParameter('employees');
+                }
 
 
                     // Set default values for the form fields, if needed
